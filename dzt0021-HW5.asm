@@ -1,14 +1,14 @@
-;; Author: Tran, Donald												 ;;
-;;																	 ;;
-;; Username: DZT0021											     ;;
-;;																	 ;;
-;; Homework #5  											         ;;
-;;																	 ;; 
-;; Note: This project performs encrytion and decryption using        ;;
-;;		 the Vigenere cipher and assumes the plain text and key		 ;;
-;;		 alphabet consists of all upper case values. Final			 ;;
-;;       decrpytion text is stored in "det[]"						 ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Author: Tran, Donald							 ;;
+;;									 ;;
+;; Username: DZT0021		  					 ;;
+;;									 ;;
+;; Homework #5  							 ;;
+;;									 ;; 
+;; Note: This project performs encrytion and decryption using        	 ;;
+;;	 the Vigenere cipher and assumes the plain text and key	 	 ;;
+;;	 alphabet consists of all upper case values. Final	 	 ;;
+;;       decrpytion text is stored in "det[]"				 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 .386
 .model flat, stdcall
@@ -18,9 +18,9 @@ ExitProcess proto, dwExitCode:dword
 
 .data
 	; Mandatory Assignment Values
-	pt byte "ATTACKATDAWN"			; Plaintext
-	ct byte lengthof pt dup(?)		; Cyphertext
-	key byte "DONTRAN"				; Key
+	pt byte "THENIGHTISDARKANDFULLOFMANYTERROS"	; Plaintext
+	ct byte lengthof pt dup(?)			; Cyphertext
+	key byte "GAMEOFTHRONES"			; Key
 	
 	; Helper Variables
 	ket byte lengthof pt dup(?)		; Full Key Text
@@ -35,8 +35,8 @@ ExitProcess proto, dwExitCode:dword
 	main endp
 
 		;;;;;;;;;;;;;;;;;;;;;;;;;; Creates Full Keytext (Procedure);;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-		;;																						;;
-		;; The wrap-around effect is predicated on the fact "ket" (Full Key Text)    			;;
+		;;											;;
+		;; The wrap-around effect is predicated on the fact "ket" (Full Key Text)    		;;
 		;; is declared after "key" because the nth-index + 1 of key is the 0th index of "ket"	;;
 		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		KeyFill proc USES esi ebx
@@ -56,13 +56,13 @@ ExitProcess proto, dwExitCode:dword
 		KeyFill endp
 
 		;;;;;;;;;;;;;;;;;;;; Encryption Procedure ;;;;;;;;;;;;;;;;;;;;;;;;;
-		;; Algorithm:												     ;;
-		;;			for (int i = 0; i < pt.length(); ++i) {				 ;;
-		;;				char c = pt[i];									 ;;
-        ;;				ct[i] = (c + key[i] - 2*'A') % 26 + 'A';		 ;;
-        ;;			}													 ;;
-		;;																 ;;
-		;; Output: Cyphertext is stored in "ct"							 ;;
+		;; Algorithm:							 ;;
+		;;	for (int i = 0; i < pt.length(); ++i) {			 ;;
+		;;		char c = pt[i];					 ;;
+        	;;		ct[i] = (c + key[i] - 2*'A') % 26 + 'A';	 ;;
+        	;;	}							 ;;
+		;;								 ;;
+		;; Output: Cyphertext is stored in "ct"				 ;;
 		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		Encrypt proc USES edx ebx esi edi
 			mov ecx, lengthof pt
@@ -90,13 +90,13 @@ ExitProcess proto, dwExitCode:dword
 		Encrypt endp
 		
 		;;;;;;;;;;;;;;;;;;;; Decryption Procedure ;;;;;;;;;;;;;;;;;;;;;;;;;
-		;; Algorithm:												     ;;
-		;;			for (int i = 0; i < pt.length(); ++i) {				 ;;
-		;;				char c = ct[i];									 ;;
-        ;;				det[i] = (c - ket[i] + 26) % 26 + 'A';			 ;;
-        ;;			}													 ;;
-		;;																 ;;
-		;; Output: Decryption text is stored in "det"					 ;;
+		;; Algorithm:							 ;;
+		;;	for (int i = 0; i < pt.length(); ++i) {			 ;;
+		;;		char c = ct[i];					 ;;
+        	;;		det[i] = (c - ket[i] + 26) % 26 + 'A';		 ;;
+        	;;	}							 ;;
+		;;								 ;;
+		;; Output: Decryption text is stored in "det"			 ;;
 		;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 		Decrypt proc USES edx ebx esi edi
 			mov ecx, lengthof pt
