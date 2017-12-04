@@ -18,7 +18,7 @@ ExitProcess proto, dwExitCode:dword
 
 .data
 	; Mandatory Assignment Values
-	pt byte "THENIGHTISDARKANDFULLOFMANYTERROS"	; Plaintext
+	pt byte "THENIGHTISDARKANDFULLOFMANYTERRORS"	; Plaintext
 	ct byte lengthof pt dup(?)			; Cyphertext
 	key byte "GAMEOFTHRONES"			; Key
 	
@@ -59,7 +59,7 @@ ExitProcess proto, dwExitCode:dword
 		;; Algorithm:							 ;;
 		;;	for (int i = 0; i < pt.length(); ++i) {			 ;;
 		;;		char c = pt[i];					 ;;
-        	;;		ct[i] = (c + key[i] - 2*'A') % 26 + 'A';	 ;;
+        	;;		ct[i] = (c + ket[i] - 2*'A') % 26 + 'A';	 ;;
         	;;	}							 ;;
 		;;								 ;;
 		;; Output: Cyphertext is stored in "ct"				 ;;
